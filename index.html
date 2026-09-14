@@ -1,86 +1,435 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YUSHIN RENOVATION</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>株式会社ユウシン｜住まいの可能性を、これからの暮らしへ。(提案用デモ)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
-  <header class="header">
-    <div class="container">
-      <p class="logo">YUSHIN RENOVATION</p>
-      <nav class="nav">
-        <a href="#about">ABOUT</a>
-        <a href="#service">SERVICE</a>
-        <a href="#contact">CONTACT</a>
+<!-- ===================================================== -->
+<!-- 01 HEADER -->
+<!-- ===================================================== -->
+<header class="site-header" id="hero">
+  <div class="site-header__inner">
+    <a class="brand" href="#hero">
+      <span class="brand__en">YUSHIN</span>
+      <span class="brand__jp">株式会社ユウシン</span>
+    </a>
+
+    <p class="header-tagline">住まいの可能性を、<br>これからの暮らしへ。</p>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#hero" class="is-active">TOP</a></li>
+        <li><a href="#about">私たちについて</a></li>
+        <li><a href="#service">事業内容</a></li>
+        <li><a href="#works">施工事例</a></li>
+        <li><a href="#company-info">会社情報</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ul>
+    </nav>
+
+    <a href="#contact" class="btn btn-dark header-cta">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      お問い合わせ・相談する
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===================================================== -->
+<!-- 01 HERO -->
+<!-- ===================================================== -->
+<section class="hero" aria-label="ヒーロー">
+  <div class="hero__photo">
+    <img src="images/photos/hero.jpg" alt="リノベーションされたリビング・ダイニングのイメージ写真(提案用仮素材)" loading="eager">
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <h1 class="hero__title">今あるものに、<br>新しい価値を。</h1>
+    <p class="hero__en">RENOVATION / REAL ESTATE / REFORM</p>
+    <p class="hero__desc">住まいを直すだけではなく、その場所で始まる次の暮らしまで考える。<br>東川口を拠点に、住まいと不動産の価値をつくるパートナーです。</p>
+    <p class="hero__meta">株式会社ユウシン　｜　埼玉県川口市・東川口<span class="tentative-mark">(仮)</span></p>
+    <div class="hero__actions">
+      <a href="#works" class="btn btn-dark">施工事例を見る<span class="arrow">→</span></a>
+      <a href="#contact" class="btn btn-outline">リノベーションについて相談する<span class="arrow">→</span></a>
+    </div>
+  </div>
+  <div class="hero__scroll">SCROLL</div>
+</section>
+
+<main>
+
+<!-- ===================================================== -->
+<!-- 02 CONCEPT -->
+<!-- ===================================================== -->
+<section class="section section--split" id="concept" data-section="02">
+  <div class="container split">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">02</span><span class="eyebrow__line"></span><span class="eyebrow__label">CONCEPT</span></p>
+      <h2 class="section-title">暮らしを、<br>もう一度設計する。</h2>
+      <p class="section-en">RENOVATION FOR A BETTER LIFE</p>
+      <p class="section-desc">今の暮らしに合わせて、間取りも、素材も、デザインも。<br>住まいを見直すリノベーションで、<br>これからの暮らしに新しい価値をつくります。</p>
+      <a href="#about" class="btn btn-outline">私たちの想いを見る<span class="arrow">→</span></a>
+    </div>
+    <div class="split__visual">
+      <img class="photo photo--tall" src="images/photos/concept.jpg" alt="オリーブの枝と本が置かれたダイニングテーブルのイメージ写真(提案用仮素材)" loading="lazy">
+      <p class="visual-script">A new value<br>for your life.</p>
+      <p class="visual-caption">今あるものに、<br>新しい価値を。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 03 RENOVATION -->
+<!-- ===================================================== -->
+<section class="section section--split section--alt" id="renovation" data-section="03">
+  <div class="container split">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">03</span><span class="eyebrow__line"></span><span class="eyebrow__label">RENOVATION</span></p>
+      <h2 class="section-title">住まいに、<br>新しい価値を。</h2>
+      <p class="section-en">CREATE A NEW VALUE IN YOUR HOME</p>
+      <p class="section-desc">戸建て・マンションを問わず、<br>暮らしに合わせたリノベーションで<br>理想の住まいをカタチにします。</p>
+      <a href="#service" class="btn btn-outline">リノベーションについて<span class="arrow">→</span></a>
+    </div>
+    <div class="split__visual split__visual--wide">
+      <img class="photo photo--wide" src="images/photos/renovation.jpg" alt="リノベーション後のキッチン・リビングのイメージ写真(提案用仮素材)" loading="lazy">
+      <p class="visual-caption visual-caption--top">今の暮らしを、<br>これからの暮らしへ。</p>
+      <p class="visual-script visual-script--bottom">Renovation<br>for a better tomorrow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 04 WORKS -->
+<!-- ===================================================== -->
+<section class="section section--split" id="works" data-section="04">
+  <div class="container split">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">04</span><span class="eyebrow__line"></span><span class="eyebrow__label">WORKS</span></p>
+      <h2 class="section-title">施工事例</h2>
+      <p class="section-desc">施工事例の掲載イメージです。<br>実制作時には、実際の施工写真・<br>事例情報を掲載します。</p>
+      <a href="#works" class="btn btn-outline">掲載イメージを見る<span class="arrow">→</span></a>
+      <p class="section-foot">— YUSHIN RENOVATION WORKS —</p>
+    </div>
+    <div class="works-compare">
+      <div class="works-compare__photos">
+        <div class="works-compare__frame">
+          <span class="works-compare__tag works-compare__tag--before">BEFORE<small>施工前</small></span>
+          <img class="photo photo--compare" src="images/photos/works-before.jpg" alt="施工前の和室のイメージ写真(提案用仮素材)" loading="lazy">
+        </div>
+        <button class="works-compare__nav" type="button" aria-label="事例を切り替える" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+        </button>
+        <div class="works-compare__frame">
+          <span class="works-compare__tag works-compare__tag--after">AFTER<small>施工後</small></span>
+          <img class="photo photo--compare" src="images/photos/works-after.jpg" alt="施工後の開放的なLDKのイメージ写真(提案用仮素材)" loading="lazy">
+        </div>
+      </div>
+      <div class="works-compare__captions">
+        <div class="works-compare__caption-block">
+          <p class="works-compare__caption">築30年の戸建て住宅<span class="tentative-mark">(仮)</span><br>間取りが細かく、暗い印象の空間でした。</p>
+          <p class="proposal-note">PHOTO：提案用イメージ</p>
+        </div>
+        <div class="works-compare__caption-block">
+          <p class="works-compare__caption">間取りを見直し、光が入る開放的なLDKに。<br>家族が自然と集まる、心地よい空間へ生まれ変わりました。</p>
+          <p class="proposal-note">PHOTO：提案用イメージ</p>
+        </div>
+      </div>
+      <p class="visual-script visual-script--corner">Renovation<br>after.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 05 SERVICE -->
+<!-- ===================================================== -->
+<section class="section" id="service" data-section="05">
+  <div class="container service-layout">
+    <div class="split__text split__text--noshrink">
+      <p class="eyebrow"><span class="eyebrow__num">05</span><span class="eyebrow__line"></span><span class="eyebrow__label">SERVICE</span></p>
+      <h2 class="section-title">事業内容</h2>
+      <p class="section-desc">不動産・リノベーション・リフォーム・<br>コインランドリーまで、<br>住まいと空間の価値をトータルで<br>サポートします。</p>
+      <a href="#service" class="btn btn-outline">サービス一覧を見る<span class="arrow">→</span></a>
+      <p class="section-foot">— YUSHIN SERVICE —</p>
+    </div>
+
+    <div class="service-content">
+      <p class="service-head__catch">暮らしに、もっと選べる価値を。<span>MORE VALUE FOR YOUR LIFE.</span></p>
+      <div class="service-body">
+      <div class="service-grid">
+        <article class="service-card">
+          <img class="photo photo--card" src="images/photos/service-realestate.jpg" alt="不動産事業のイメージ写真・戸建て外観(提案用仮素材)" loading="lazy">
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M8 24 24 10l16 14" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13 21v17h22V21" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <h3>不動産事業<small>（売買・賃貸）</small></h3>
+          <p class="service-card__en">REAL ESTATE</p>
+          <p class="service-card__desc">土地・建物の売買・賃貸を通じて、理想の住まい探しをサポートします。</p>
+        </article>
+        <article class="service-card">
+          <img class="photo photo--card" src="images/photos/service-renovation.jpg" alt="リノベーション事業のイメージ写真・キッチン(提案用仮素材)" loading="lazy">
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M8 24 24 10l16 14" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M28 18l6-6 4 4-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13 21v17h22V21" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <h3>リノベーション事業</h3>
+          <p class="service-card__en">RENOVATION</p>
+          <p class="service-card__desc">今ある住まいに新しい価値を。ライフスタイルに合わせた空間づくりをご提案します。</p>
+        </article>
+        <article class="service-card">
+          <img class="photo photo--card" src="images/photos/service-reform.jpg" alt="リフォーム事業のイメージ写真・洗面台(提案用仮素材)" loading="lazy">
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M17 31 30 18a3 3 0 0 1 4 4L21 35l-6 2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <h3>リフォーム事業</h3>
+          <p class="service-card__en">REFORM</p>
+          <p class="service-card__desc">部分的な改修から全面リフォームまで、快適で安心な暮らしを実現します。</p>
+        </article>
+        <article class="service-card">
+          <img class="photo photo--card" src="images/photos/service-laundry.jpg" alt="コインランドリー事業のイメージ写真・店内(提案用仮素材)" loading="lazy">
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><rect x="10" y="8" width="28" height="32" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="24" cy="26" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <h3>コインランドリー事業</h3>
+          <p class="service-card__en">COIN LAUNDRY</p>
+          <p class="service-card__desc">地域の暮らしを支えるコインランドリーの運営・サポートを行っています。</p>
+        </article>
+      </div>
+      <div class="service-side">
+        <img class="photo photo--tall" src="images/photos/service-side.jpg" alt="観葉植物と本のイメージ写真(提案用仮素材)" loading="lazy">
+        <p class="visual-script visual-script--bottom">Better spaces<br>Brighter lives.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 06 ABOUT -->
+<!-- ===================================================== -->
+<section class="section section--triple section--alt" id="about" data-section="06">
+  <div class="container triple">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">06</span><span class="eyebrow__line"></span><span class="eyebrow__label">ABOUT</span></p>
+      <h2 class="section-title">私たちについて</h2>
+      <p class="section-en">ABOUT YUSHIN</p>
+      <p class="section-desc">2007年<span class="tentative-mark">(仮)</span>の創業以来、川口市・東川口エリアを中心に、<br>住まいと不動産に関わるご相談をお受けしてきました。<br>小さな会社だからこそ、一つひとつの仕事に<br>きちんと向き合い、暮らしに寄り添った<br>ご提案を大切にしています。</p>
+      <a href="#company-info" class="btn btn-outline">会社情報を見る<span class="arrow">→</span></a>
+      <p class="section-foot">— YUSHIN COMPANY —</p>
+    </div>
+    <div class="triple__visual">
+      <img class="photo photo--full" src="images/photos/about.jpg" alt="ペンダントライトのあるダイニングのイメージ写真(提案用仮素材)" loading="lazy">
+      <p class="visual-caption visual-caption--onphoto">住まいの<br>可能性を、<br>これからの<br>暮らしへ。<br><span>MORE VALUE<br>FOR YOUR LIFE.</span></p>
+    </div>
+    <div class="triple__brand">
+      <p class="triple__brand-en">YUSHIN</p>
+      <p class="triple__brand-jp">株式会社ユウシン</p>
+      <hr>
+      <p class="triple__brand-copy">人と暮らしに、<br>誠実に。<br>地域とともに、<br>これからも。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 07 AREA -->
+<!-- ===================================================== -->
+<section class="section section--triple" id="area" data-section="07">
+  <div class="container triple triple--area">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">07</span><span class="eyebrow__line"></span><span class="eyebrow__label">AREA</span></p>
+      <h2 class="section-title">対応エリア</h2>
+      <p class="section-en">SERVICE AREA</p>
+      <p class="section-desc">対応エリアについては、<br>正式制作時に実際の営業・施工<br>対応地域を確認のうえ掲載します。</p>
+      <a href="#area" class="btn btn-outline">対応エリアについて<span class="arrow">→</span></a>
+      <p class="section-foot">— YUSHIN AREA —</p>
+    </div>
+    <div class="triple__visual area-map">
+      <svg class="area-map__svg" viewBox="0 0 400 420" role="img" aria-label="対応エリアの概略図(仮)">
+        <path d="M120 30 C60 60 40 130 70 190 C40 230 50 300 100 340 C150 390 260 390 300 340 C340 300 330 220 300 190 C330 140 300 70 240 40 C200 15 160 15 120 30 Z" fill="var(--color-bg-alt)" stroke="var(--color-border)" stroke-width="1.5"/>
+        <path d="M150 150 C130 170 130 220 160 250 C190 280 240 270 250 230 C260 190 240 160 210 150 C190 143 165 140 150 150 Z" fill="var(--color-gold-soft)" stroke="var(--color-gold)" stroke-width="1.5"/>
+        <circle cx="215" cy="185" r="4" fill="var(--color-charcoal)"/>
+        <circle cx="185" cy="205" r="3" fill="var(--color-charcoal)"/>
+      </svg>
+      <span class="area-map__label area-map__label--pref">埼玉県</span>
+      <span class="area-map__label area-map__label--saitama">さいたま市</span>
+      <span class="area-map__label area-map__label--koshigaya">越谷市</span>
+      <span class="area-map__label area-map__label--toda">戸田市</span>
+      <span class="area-map__label area-map__label--soka">草加市</span>
+      <span class="area-map__label area-map__label--tokyo">東京都</span>
+      <span class="area-map__label area-map__label--kawaguchi">川口市</span>
+      <span class="area-map__label area-map__label--higashi">● 東川口</span>
+      <p class="area-map__callout">地域密着で<br>迅速に対応<br>いたします。</p>
+      <p class="proposal-note area-map__note">MAP：提案用イメージ</p>
+    </div>
+    <div class="triple__brand triple__brand--photo">
+      <img class="photo photo--full" src="images/photos/area-city.jpg" alt="川口・東川口エリアの街並みのイメージ写真(提案用仮素材)" loading="lazy">
+      <p class="visual-caption visual-caption--onphoto">この街の暮らしを、<br>もっと心地よく。<span>住まいのことなら、<br>地域をよく知る私たちに<br>お任せください。</span></p>
+      <p class="visual-script visual-script--bottom">Closer<br>to your life.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 08 FAQ (後から非表示・削除しやすいようセクション単位で独立) -->
+<!-- 削除する場合: この <section id="faq" ...> ~ </section> ブロックを丸ごと削除、
+     もしくは非表示にする場合は section タグに hidden 属性を付与してください。 -->
+<!-- ===================================================== -->
+<section class="section section--alt" id="faq" data-section="08" data-removable="true">
+  <div class="container split split--faq">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">08</span><span class="eyebrow__line"></span><span class="eyebrow__label">FAQ</span></p>
+      <h2 class="section-title">よくあるご質問</h2>
+      <p class="section-en">FREQUENTLY ASKED QUESTIONS</p>
+      <p class="section-desc">リノベーションについて、<br>お客様からよくいただくご質問を<br>まとめました。<br>ご不明な点がございましたら、<br>お気軽にお問い合わせください。</p>
+      <a href="#contact" class="btn btn-outline">お問い合わせはこちら<span class="arrow">→</span></a>
+      <p class="section-foot">— YUSHIN FAQ —</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-card"><span class="faq-card__q">Q01</span><div><h3>相談や見積もりは無料ですか？</h3><p><span class="faq-card__a">A</span>はい、無料です。現地調査・お見積もりまで費用はかかりません。まずはお気軽にご相談ください。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q05</span><div><h3>ローンの利用はできますか？</h3><p><span class="faq-card__a">A</span>はい、提携する金融機関のリフォームローンをご利用いただけます。詳しくは担当者までお問い合わせください。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q02</span><div><h3>工事の期間はどのくらいですか？</h3><p><span class="faq-card__a">A</span>内容や規模によりますが、一般的な住宅リノベーションでは約1〜3か月が目安です。事前にスケジュールをご案内いたします。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q06</span><div><h3>デザインの相談もできますか？</h3><p><span class="faq-card__a">A</span>はい、可能です。お客様のライフスタイルやご希望に合わせて、専門スタッフがデザイン提案をいたします。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q03</span><div><h3>住みながらの工事は可能ですか？</h3><p><span class="faq-card__a">A</span>工事内容によっては可能です。ただし、生活に支障が出る場合もありますので、事前に詳しくご説明し、最適な方法をご提案いたします。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q07</span><div><h3>アフターサービスはありますか？</h3><p><span class="faq-card__a">A</span>はい、工事後も安心してお住まいいただけるよう、保証・アフターサービスをご用意しています。詳細は担当者までご説明いたします。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q04</span><div><h3>どのような物件に対応していますか？</h3><p><span class="faq-card__a">A</span>戸建て・マンション・店舗・オフィスなど、幅広く対応しています。築年数や構造に関わらず、まずはご相談ください。</p></div></div>
+      <div class="faq-card"><span class="faq-card__q">Q08</span><div><h3>小規模な工事でも依頼できますか？</h3><p><span class="faq-card__a">A</span>はい、可能です。部分的なリフォームや設備の交換など、小さな工事からでもお気軽にご相談ください。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- 09 CONTACT -->
+<!-- ===================================================== -->
+<section class="section section--triple" id="contact" data-section="09">
+  <div class="container triple triple--contact">
+    <div class="split__text">
+      <p class="eyebrow"><span class="eyebrow__num">09</span><span class="eyebrow__line"></span><span class="eyebrow__label">CONTACT</span></p>
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-en">CONTACT US</p>
+      <p class="section-desc">リノベーションのご相談・お見積もりは無料です。<br>住まいのことなら、どんな小さなことでも<br>お気軽にお問い合わせください。</p>
+      <div class="contact-cards">
+        <a href="#" class="contact-card" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 8h24v16H4z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M4 9l12 9 12-9" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          <span class="contact-card__jp">メールで相談する</span>
+          <span class="contact-card__en">MAIL</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#" class="contact-card" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 5c2 0 3 1 4 3s0 3-1 4c1 3 4 6 7 7 1-1 2-2 4-1s3 2 3 4c-1 2-3 3-5 3-8-1-14-7-15-15 0-2 1-4 3-5z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          <span class="contact-card__jp">電話で相談する</span>
+          <span class="contact-card__en">TEL</span>
+          <span class="arrow">→</span>
+        </a>
+        <a href="#" class="contact-card" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="19" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5 12h22M10 4v6M22 4v6" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          <span class="contact-card__jp">来店予約をする</span>
+          <span class="contact-card__en">RESERVATION</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+      <p class="section-foot">— YUSHIN CONTACT —</p>
+    </div>
+    <div class="triple__visual">
+      <img class="photo photo--full" src="images/photos/contact.jpg" alt="観葉植物のあるダイニングテーブルのイメージ写真(提案用仮素材)" loading="lazy">
+      <p class="visual-script visual-script--onphoto">Let's talk<br>about your future.</p>
+    </div>
+    <div class="triple__brand">
+      <p class="triple__brand-en">YUSHIN</p>
+      <p class="triple__brand-jp">株式会社ユウシン</p>
+      <hr>
+      <p class="triple__brand-copy">暮らしに、<br>もっといい<br>未来を。</p>
+      <p class="triple__brand-sub">理想の暮らしを、一緒にかたちに。<br>まずはお気軽にご相談ください。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================================================== -->
+<!-- 10 FOOTER -->
+<!-- ===================================================== -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <p class="footer-brand__en">YUSHIN</p>
+      <p class="footer-brand__jp">株式会社ユウシン</p>
+      <hr>
+      <p class="footer-brand__copy">暮らしに、<br>もっと選べる価値を。</p>
+      <p class="footer-brand__en2">MORE VALUE<br>FOR YOUR LIFE.</p>
+      <div class="footer-photo">
+        <img src="images/photos/footer.jpg" alt="観葉植物と本が置かれたテーブルのイメージ写真(提案用仮素材)" loading="lazy">
+      </div>
+    </div>
+
+    <nav class="footer-col" aria-label="メニュー">
+      <p class="footer-col__title">MENU</p>
+      <ul>
+        <li><a href="#hero">ホーム</a></li>
+        <li><a href="#about">私たちについて</a></li>
+        <li><a href="#service">事業内容</a></li>
+        <li><a href="#area">対応エリア</a></li>
+        <li><a href="#faq">よくあるご質問</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-label="サービス">
+      <p class="footer-col__title">SERVICE</p>
+      <ul>
+        <li><a href="#service">不動産事業</a></li>
+        <li><a href="#service">リノベーション事業</a></li>
+        <li><a href="#service">リフォーム事業</a></li>
+        <li><a href="#service">コインランドリー事業</a></li>
+      </ul>
+    </nav>
+
+    <nav class="footer-col" aria-label="会社">
+      <p class="footer-col__title">COMPANY</p>
+      <ul>
+        <li><a href="#company-info">会社情報</a></li>
+        <li><a href="#">お知らせ</a></li>
+        <li><a href="#">採用情報</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-company" id="company-info">
+      <p class="footer-company__name">株式会社ユウシン</p>
+      <p class="footer-company__row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+        〒333-0811<br>埼玉県川口市戸塚2-9-14 ミナーク東川口2階
+      </p>
+      <p class="footer-company__row">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2C10.5 19 5 13.5 5 6a2 2 0 0 1 1-3z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+        TEL 048-271-9706
+      </p>
+      <a href="#contact" class="btn btn-outline btn-outline--light">お問い合わせはこちら<span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom__inner">
+      <p class="footer-copyright">© 2026 YUSHIN Co., Ltd. All Rights Reserved.<span class="footer-disclaimer">※本サイトはWebサイト制作提案用のデモです。掲載写真・施工事例・文章・対応エリア等の一部はイメージです。正式制作時には株式会社ユウシン様確認の情報・写真へ差し替えます。</span></p>
+      <nav class="footer-legal" aria-label="法的情報">
+        <a href="#">プライバシーポリシー</a><span>｜</span><a href="#">サイトポリシー</a><span>｜</span><a href="#">サイトマップ</a>
       </nav>
+      <a href="#hero" class="footer-top-btn" aria-label="ページトップへ戻る">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span>PAGE TOP</span>
+      </a>
     </div>
-  </header>
+  </div>
+</footer>
 
-  <main>
-
-    <section class="hero">
-      <div class="container">
-        <p class="hero-tags">RENOVATION / REFORM / REAL ESTATE</p>
-        <h1 class="hero-title">今あるものに、新しい価値を。</h1>
-        <p class="hero-subtitle">住まいを直すだけではなく、その場所で始まる次の暮らしまで考える。</p>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">ABOUT</h2>
-        <p class="section-text">
-          YUSHIN RENOVATIONは、建物の価値を見直し、暮らしに合わせて再生するリノベーション会社です。
-          古い家を直すことから、新しい住まい方の提案まで、一つひとつの現場に向き合います。
-        </p>
-      </div>
-    </section>
-
-    <section id="service" class="section section--alt">
-      <div class="container">
-        <h2 class="section-title">SERVICE</h2>
-        <ul class="service-list">
-          <li class="service-item">
-            <h3>RENOVATION</h3>
-            <p>中古住宅や古民家を、現代の暮らしに合わせて再生します。</p>
-          </li>
-          <li class="service-item">
-            <h3>REFORM</h3>
-            <p>キッチンや水回りなど、部分的な改修からトータルリフォームまで対応します。</p>
-          </li>
-          <li class="service-item">
-            <h3>REAL ESTATE</h3>
-            <p>リノベーション後の住まいの売買・賃貸に関するご相談も承ります。</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="container">
-        <h2 class="section-title">CONTACT</h2>
-        <p class="section-text">
-          ご相談・お問い合わせは、下記までお気軽にご連絡ください。
-        </p>
-        <address class="contact-info">
-          <p>〒000-0000 東京都〇〇区〇〇 0-0-0</p>
-          <p>TEL：03-0000-0000</p>
-          <p>MAIL：info@yushin-renovation.example</p>
-        </address>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p class="footer-note">Web公開トレーニング用の架空サイトです</p>
-      <p class="footer-copy">&copy; YUSHIN RENOVATION</p>
-    </div>
-  </footer>
-
+<script src="scripts/main.js"></script>
 </body>
 </html>
