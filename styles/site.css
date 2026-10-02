@@ -1,0 +1,283 @@
+/* YUSHIN 静的デモ用: WordPress テーマの style.css（Commit 済み）の公開側の指定 */
+/* =========================================================
+   WordPress 対応の追加分のみ（assets/css/main.css は既存サイトと同一）
+   ========================================================= */
+
+
+/* 施工事例（管理画面から登録した内容を表示するとき）:
+   「PHOTO：提案用イメージ」注記が確保していた余白（約29px）を残し、
+   装飾文字 "Renovation after." が説明文に重ならないようにする（PC・タブレット幅のみ） */
+@media (min-width: 901px) {
+	.works-compare__captions--live { padding-bottom: 29px; }
+}
+
+/* =========================================================
+   施工事例の手動切り替え（Phase 2B-1）
+   登録された施工事例（最新3件まで）を、同じ位置に重ねて置き、
+   矢印で切り替える。全件を重ねるので、WORKS の高さは切り替えで動かない。
+   ※ .works-compare--switch の中だけに適用（0件時の Phase 1 固定表示には影響しない）
+   ========================================================= */
+.works-compare--switch .works-compare__stack,
+.works-compare--switch .works-compare__captions-stack { display: grid; min-width: 0; }
+.works-compare--switch .works-compare__stack > .works-compare__frame,
+.works-compare--switch .works-compare__captions-stack > .works-compare__captions { grid-area: 1 / 1; }
+
+/* 控えめなフェード（切り替え前後を重ねて表示） */
+.works-compare--switch [data-slide] { transition: opacity .4s ease, visibility .4s; }
+.works-compare--switch [data-slide]:not(.is-active) { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* 既存の丸い矢印を再利用: 見た目（56px の円・矢印2つ）はそのまま、左右を別々のボタンにする */
+.works-compare--switch .works-compare__nav { padding: 0; gap: 0; overflow: hidden; }
+.works-compare--switch .works-compare__nav-btn { display: flex; align-items: center; width: 27px; height: 100%; padding: 0; }
+.works-compare--switch .works-compare__nav-btn--prev { justify-content: flex-end; padding-right: 1px; border-radius: 28px 0 0 28px; }
+.works-compare--switch .works-compare__nav-btn--next { justify-content: flex-start; padding-left: 1px; border-radius: 0 28px 28px 0; }
+.works-compare--switch .works-compare__nav-btn:hover:not([disabled]) { color: var(--color-gold); }
+.works-compare--switch .works-compare__nav-btn:focus-visible { outline: 2px solid var(--color-gold); outline-offset: -3px; }
+.works-compare--switch .works-compare__nav--off { opacity: 0.55; }
+.works-compare--switch .works-compare__nav--off .works-compare__nav-btn { cursor: default; }
+
+/* 現在位置（01 / 03） */
+.works-compare--switch .works-compare__count {
+	margin-top: 14px;
+	text-align: center;
+	font-family: var(--font-en);
+	font-size: 12px;
+	letter-spacing: 0.16em;
+	color: var(--color-text-soft);
+}
+.works-compare--switch .works-compare__count-current { color: var(--color-charcoal); }
+
+@media (prefers-reduced-motion: reduce) {
+	.works-compare--switch [data-slide] { transition: none; }
+}
+
+/* =========================================================
+   施工事例の切り替え: 写真エリア左右端の矢印 / タッチ操作（2件以上のとき）
+   ・PC: 写真エリアにマウスを乗せると、左右端に薄い丸型の矢印が現れる（左=前 / 右=次）
+   ・スマホ等（hover なし）: 薄く常時表示。左右スワイプでも切り替え
+   ・ボタン自体は写真の左右端の縦長の帯（幅64px）で、押せる範囲を広く確保
+   ========================================================= */
+.works-compare--switch .works-compare__photos { touch-action: pan-y pinch-zoom; } /* 縦スクロール・ピンチはそのまま、横スワイプだけスクリプトへ */
+
+.works-compare--switch .works-compare__arrow {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	width: 64px;
+	padding: 0;
+	opacity: 0.7;
+	transition: opacity .3s ease;
+	-webkit-tap-highlight-color: transparent;
+}
+.works-compare--switch .works-compare__arrow--prev { left: 0; justify-content: flex-start; padding-left: 10px; }
+.works-compare--switch .works-compare__arrow--next { right: 0; justify-content: flex-end; padding-right: 10px; }
+.works-compare--switch .works-compare__arrow:focus { outline: none; }
+
+.works-compare--switch .works-compare__arrow-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.86);
+	border: 1px solid var(--color-border);
+	color: var(--color-charcoal);
+	transition: background-color .2s ease, color .2s ease;
+}
+.works-compare--switch .works-compare__arrow-icon svg { width: 18px; height: 18px; }
+.works-compare--switch .works-compare__arrow:focus-visible .works-compare__arrow-icon { outline: 2px solid var(--color-gold); outline-offset: 2px; }
+.works-compare--switch .works-compare__arrow:focus-visible { opacity: 1; }
+
+/* PC（マウス）: 通常は隠し、写真エリアにカーソルがあるときに浮かび上がる */
+@media (hover: hover) and (pointer: fine) {
+	.works-compare--switch .works-compare__arrow { opacity: 0; }
+	.works-compare--switch .works-compare__photos:hover .works-compare__arrow,
+	.works-compare--switch .works-compare__arrow:focus-visible { opacity: 1; }
+	.works-compare--switch .works-compare__arrow:hover .works-compare__arrow-icon { background: #fff; color: var(--color-gold); }
+}
+
+/* 写真エリアが小さい幅（約900〜1120px）: 中央だと BEFORE/AFTER タグに重なるため、矢印を小さくして下端寄せにする */
+@media (min-width: 901px) and (max-width: 1120px) {
+	.works-compare--switch .works-compare__arrow { align-items: flex-end; padding-bottom: 10px; }
+	.works-compare--switch .works-compare__arrow-icon { width: 36px; height: 36px; }
+	.works-compare--switch .works-compare__arrow-icon svg { width: 16px; height: 16px; }
+}
+
+/* 写真が縦に並ぶ幅（900px以下）: AFTER タグと重ならないよう、矢印を上へずらす */
+@media (max-width: 900px) {
+	.works-compare--switch .works-compare__arrow-icon { transform: translateY(-40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.works-compare--switch .works-compare__arrow,
+	.works-compare--switch .works-compare__arrow-icon { transition: none; }
+}
+
+/* =========================================================
+   施工事例 一覧（/works/）・詳細（/works/{slug}/）
+   既存のデザイン変数・部品（.section / .container / .eyebrow / .section-title / .btn / .works-compare__*）を流用し、
+   ここでは一覧のカード・絞り込み・ページ送り・前後ナビだけを足す。
+   ========================================================= */
+
+/* 矢印つきの下線リンク（トップの各事例・一覧カードの「詳しく見る」で共通） */
+.text-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding-bottom: 2px;
+	font-size: 13.5px;
+	letter-spacing: 0.04em;
+	border-bottom: 1px solid var(--color-gold);
+}
+.text-link { position: relative; }
+/* 見た目は変えずに、指で押しやすいようタップできる範囲を広げる */
+.text-link::before { content: ""; position: absolute; inset: -12px -8px; }
+.text-link .arrow { transition: transform .2s ease; }
+.text-link:hover .arrow,
+a:hover > .text-link .arrow { transform: translateX(4px); }
+.text-link:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
+
+/* トップの WORKS: 各事例の詳細へのリンク（説明文の下。切り替えスライドと同じ位置で入れ替わる） */
+.works-compare__more { grid-column: 1 / -1; margin-top: 18px; }
+
+/* 見出し・案内（一覧 / 404） */
+.works-archive__head { margin-bottom: 44px; }
+.works-archive__head .section-title { margin-bottom: 26px; }
+.works-archive__empty { margin-bottom: 30px; }
+.page-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+
+/* 種別の絞り込み */
+.works-filter ul { display: flex; flex-wrap: wrap; gap: 10px; }
+.works-filter a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 8px 22px;
+	font-size: 13.5px;
+	letter-spacing: 0.04em;
+	line-height: 1.4;
+	background: var(--color-white);
+	border: 1px solid var(--color-border);
+	transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.works-filter a:hover { border-color: var(--color-gold); color: var(--color-gold); }
+.works-filter a[aria-current="page"] { background: var(--color-charcoal); border-color: var(--color-charcoal); color: var(--color-white); }
+.works-filter a:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 2px; }
+
+/* 一覧のカード（施工前・施工後を並べる。写真の見せ方はトップの WORKS と同じ） */
+.works-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px 40px; }
+.works-card__link { display: block; }
+.works-card__link:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 6px; }
+.works-card__photos { display: grid; grid-template-columns: 1fr 1fr; align-items: start; }
+.works-card .works-compare__tag { top: 12px; left: 12px; padding: 5px 12px; font-size: 13px; }
+.works-card .works-compare__tag small { font-size: 10px; }
+.works-card__body { padding-top: 22px; }
+.works-card__type { font-size: 12.5px; letter-spacing: 0.12em; color: var(--color-gold); line-height: 1.6; }
+.works-card__title { margin: 6px 0 16px; font-size: 20px; line-height: 1.55; transition: color .2s ease; }
+.works-card__link:hover .works-card__title { color: var(--color-gold); }
+
+/* ページ送り（paginate_links の <ul class="page-numbers"> 自体には枠を付けず、中の <li> の a / span だけをボタンにする） */
+.works-pagination { margin-top: 64px; }
+.works-pagination ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.works-pagination li > .page-numbers {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 44px;
+	padding: 0 14px;
+	font-family: var(--font-en);
+	font-size: 14px;
+	letter-spacing: 0.04em;
+	background: var(--color-white);
+	border: 1px solid var(--color-border);
+	transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.works-pagination li > a.page-numbers:hover { border-color: var(--color-gold); color: var(--color-gold); }
+.works-pagination li > .page-numbers.current { background: var(--color-charcoal); border-color: var(--color-charcoal); color: var(--color-white); }
+.works-pagination li > .page-numbers.dots { background: none; border-color: transparent; }
+
+/* 詳細 */
+.works-single__head { margin-bottom: 44px; }
+.works-single__type { margin-bottom: 8px; font-size: 13px; letter-spacing: 0.12em; color: var(--color-gold); }
+.works-single__title { margin-bottom: 0; }
+.works-single .works-compare__captions { margin-top: 28px; }
+.works-single__nav {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	grid-template-areas: "newer list older";
+	align-items: center;
+	gap: 16px;
+	margin-top: 72px;
+	padding-top: 40px;
+	border-top: 1px solid var(--color-border);
+}
+.works-single__nav-newer { grid-area: newer; justify-self: start; }
+.works-single__nav-list  { grid-area: list; }
+.works-single__nav-older { grid-area: older; justify-self: end; }
+.works-single__nav-newer .arrow { order: -1; }
+.works-single__nav-newer:hover .arrow { transform: translateX(-4px); }
+
+@media (max-width: 900px) {
+	.works-list { grid-template-columns: 1fr; gap: 56px; }
+	.works-single__nav {
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: "list list" "newer older";
+		margin-top: 56px;
+	}
+	.works-single__nav-list { justify-self: stretch; justify-content: center; }
+}
+
+@media (max-width: 640px) {
+	.works-archive__head { margin-bottom: 32px; }
+	.works-single__head { margin-bottom: 32px; }
+	.works-card__title { font-size: 18px; }
+	.works-pagination { margin-top: 48px; }
+	/* スマホでは .btn が全幅・大きめになるため、前後ナビは横2つに収まる大きさにする */
+	.works-single__nav .btn { padding: 14px 10px; font-size: 13px; gap: 6px; }
+	.works-single__nav-newer, .works-single__nav-older { justify-self: stretch; }
+	.page-actions .btn { width: 100%; }
+}
+
+/* =========================================================
+   中間幅（901〜1200px）の補正
+   assets/css/main.css（既存の静的サイトと同一）のタブレット/スマホ用レイアウトは 900px 以下から。
+   901〜1200px では PC 用の横並びのまま押し縮められ、ヘッダーのナビが1文字ずつ折り返して高さが最大246pxまで膨らみ、
+   FAQ の回答も1行3〜5文字になる。ここでは 1200px 以下から切り替える（見た目・開閉は 900px 以下の既存の表示と同じ）。
+   ========================================================= */
+@media (max-width: 1200px) {
+	/* ヘッダー: 900px 以下と同じハンバーガー表示（開閉は assets/js/main.js の .is-open のまま） */
+	.header-tagline, .main-nav, .header-cta { display: none; }
+	.nav-toggle { display: flex; }
+	.site-header.is-open .main-nav {
+		display: block;
+		position: absolute;
+		top: 100%;
+		left: 0; right: 0;
+		background: var(--color-bg);
+		border-bottom: 1px solid var(--color-border);
+		padding: 10px 40px 26px;
+	}
+	.site-header.is-open .main-nav ul { flex-direction: column; gap: 4px; }
+	.site-header.is-open .main-nav a { display: block; padding: 12px 0; }
+	.site-header.is-open .header-cta { display: inline-flex; margin: 0 40px 26px; }
+
+	/* FAQ: 「テキスト + カード2列」の横並びをやめ、テキストの下にカードを（2列のまま）置く */
+	.split--faq { grid-template-columns: 1fr; }
+}
+
+/* スマホ幅でメニューを開いたとき、「お問い合わせ・相談する」がブランド名・ハンバーガーと同じ1行に並び、
+   ページ全体が横に広がる（390px で 547px）。ボタンだけ次の行へ回す（既存の 640px の切り替え位置）。 */
+@media (max-width: 640px) {
+	.site-header.is-open .site-header__inner { flex-wrap: wrap; }
+	.site-header.is-open .nav-toggle { order: 2; }
+	.site-header.is-open .header-cta { order: 3; flex: 1 1 100%; margin: 4px 0 0; }
+}
+
+/* 静的デモ用: 「内容をスキップ」リンク（キーボードで移動したときだけ表示。WordPress 本体の wp-block-template-skip-link.css と同じ指定） */
+.skip-link.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute!important;width:1px;word-wrap:normal!important;word-break:normal!important}
+.skip-link.screen-reader-text:focus{background-color:#eee;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}

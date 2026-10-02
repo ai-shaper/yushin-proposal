@@ -1,0 +1,145 @@
+/* =========================================================
+   会社サイト → 販売物件 の導線（会社サイト側のページだけで読み込む。物件ページでは読み込まない）
+   色・文字・ボタンは会社サイトの部品（assets/css/main.css）をそのまま使い、ここでは足りない分だけを書く。
+   ========================================================= */
+
+/* ---------- ヘッダー ----------
+   ナビに「販売物件」が増えて7項目になると、従来の間隔（34px）では 1201px 以上のどの幅でも
+   「販売/物件」のように各項目が2行に折れる（中身の最大幅が 1280px で止まるため、幅を広げても収まらない）。
+   項目を折り返さない・間隔を 24px に詰める・ブランド名を折り返さない、の3点で1行に収める。 */
+.brand { flex-shrink: 0; }
+.brand__jp { white-space: nowrap; }
+.main-nav ul { gap: 24px; }
+.main-nav a { white-space: nowrap; }
+
+/* 1201〜1279px はタグラインを置く幅が足りない（置くと3〜4行に潰れてヘッダーが高くなる）ので出さない。
+   1200px 以下は従来どおりハンバーガー（style.css）。 */
+@media (min-width: 1201px) and (max-width: 1279px) {
+  .header-tagline { display: none; }
+  .brand { margin-right: auto; }
+}
+
+/* ---------- トップ: PROPERTY / 販売物件（patterns/property-pickup.php） ---------- */
+.home-property__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 24px;
+}
+.home-property__list[data-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* 物件名の行数がカードごとに違っても「詳しく見る」の高さをそろえる */
+.home-property-card__link { display: flex; flex-direction: column; height: 100%; }
+.home-property-card__body { display: flex; flex-direction: column; align-items: flex-start; flex: 1; }
+.home-property-card__body .text-link { margin-top: auto; }
+.home-property-card__link:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 6px; }
+
+.home-property-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+.home-property-card__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 写真がない物件: 会社サイトの色で、家のアイコンと「写真準備中」だけを置く */
+.home-property-card__noimage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+  border: 1px solid var(--color-border);
+  color: var(--color-gold);
+}
+.home-property-card__noimage svg { width: 40px; height: 40px; }
+.home-property-card__noimage span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-en);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  line-height: 1.6;
+}
+.home-property-card__noimage small {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--color-text-soft);
+}
+
+/* 販売状態（物件サイトと同じ色分け: 販売中=チャコール / 商談中=ゴールド）と DEMO */
+.home-property-card__status,
+.home-property-card__demo {
+  position: absolute;
+  top: 12px;
+  z-index: 2;
+  padding: 3px 10px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+.home-property-card__status { left: 12px; color: var(--color-white); background: var(--color-charcoal); }
+.home-property-card__status--negotiating { background: var(--color-gold); }
+.home-property-card__demo {
+  right: 12px;
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-gold-soft);
+  background: rgba(42, 39, 35, 0.88);
+}
+
+.home-property-card__body { padding-top: 18px; }
+.home-property-card__kind { font-size: 12.5px; letter-spacing: 0.12em; color: var(--color-gold); line-height: 1.6; }
+.home-property-card__name {
+  margin: 4px 0 4px;
+  font-size: 17px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  transition: color .2s ease;
+}
+.home-property-card__link:hover .home-property-card__name { color: var(--color-gold); }
+.home-property-card__addr { font-size: 13px; color: var(--color-text-soft); line-height: 1.7; overflow-wrap: anywhere; }
+.home-property-card__price {
+  margin: 10px 0 14px;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.home-property-card__price small { margin-left: 2px; font-size: 13px; }
+.home-property-card__price .pp-price__none { font-family: var(--font-sans); font-size: 13.5px; font-weight: 400; }
+
+.home-property__note {
+  margin-top: 26px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--color-text-soft);
+}
+
+/* 1件のときは写真と文字を横に並べる（右の欄に1枚だけが大きく伸びないように） */
+@media (min-width: 641px) {
+  .home-property__list[data-count="1"] { grid-template-columns: minmax(0, 1fr); }
+  .home-property__list[data-count="1"] .home-property-card__link {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: center;
+  }
+  .home-property__list[data-count="1"] .home-property-card__body { padding-top: 0; }
+}
+
+@media (max-width: 1200px) {
+  .home-property__list { gap: 28px 18px; }
+  .home-property-card__name { font-size: 16px; }
+  .home-property-card__price { font-size: 20px; }
+}
+
+@media (max-width: 640px) {
+  .home-property__list,
+  .home-property__list[data-count="2"] { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .home-property-card__name { font-size: 17px; }
+}

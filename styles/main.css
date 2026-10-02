@@ -316,6 +316,14 @@ svg { width: 1em; height: 1em; }
 }
 .hero__meta { font-size: 13.5px; color: var(--color-text-soft); margin-bottom: 34px; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* 背景写真の上でも読めるように（写真・オーバーレイ・余白は変えない）
+   - 説明文と会社名・所在地: 文字の周りだけに背景色のやわらかい縁取り（箱は付けない）。会社名・所在地は少し濃く
+   - 右の「相談する」ボタン: 透明だと写真が透けて読みにくいため、アイボリーの背景を敷く（細い枠線・ホバー時の黒は従来どおり）。左の黒いボタンが主、右が明るい副導線 */
+.hero__desc, .hero__meta { text-shadow: 0 0 2px rgba(251,248,243,0.9), 0 0 8px rgba(251,248,243,0.9); }
+.hero__meta { color: #4E4841; }
+.hero__actions .btn-outline { background: rgba(251,248,243,0.92); }
+.hero__actions .btn-outline:hover { background: var(--color-charcoal); color: var(--color-white); }
 .hero__scroll {
   position: absolute;
   left: 40px;
