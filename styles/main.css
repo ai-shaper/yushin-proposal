@@ -513,10 +513,6 @@ svg { width: 1em; height: 1em; }
   gap: 56px;
   align-items: center;
 }
-/* AREA のみ、地図（中央）を小さく・写真（右）を広く取り直したバランス */
-.triple.triple--area {
-  grid-template-columns: minmax(280px, 340px) minmax(260px, 380px) 1fr;
-}
 .triple__visual { position: relative; }
 .triple__brand {
   align-self: stretch;
@@ -532,121 +528,120 @@ svg { width: 1em; height: 1em; }
 .triple__brand hr { border: none; border-top: 1px solid var(--color-gold); width: 30px; margin: 0 0 22px; }
 .triple__brand-copy { font-family: var(--font-serif); font-size: 16.5px; line-height: 1.85; }
 .triple__brand-sub { font-family: var(--font-sans); font-size: 12px; color: var(--color-text-soft); letter-spacing: 0; margin-top: 20px; line-height: 1.9; }
-.triple__brand--photo { position: relative; padding-left: 0; border-left: none; align-self: stretch; overflow: hidden; }
-.triple__visual:not(.area-map), .triple__brand--photo {
+.triple__visual {
   align-self: stretch;
   overflow: hidden;
 }
-.triple__visual:not(.area-map) .photo,
-.triple__brand--photo .photo {
+.triple__visual .photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* --- 07 AREA マップ（簡略化した概念図・実測ではありません） --- */
-.area-map { min-height: 420px; }
-.area-map__svg { width: 100%; height: auto; }
-.area-map__label {
-  position: absolute;
-  font-size: 13px;
-  color: var(--color-text-soft);
+/* =========================================================
+   07 FAQ（質問をクリック／タップすると回答が開く。<details>/<summary>）
+   ========================================================= */
+.split--faq { align-items: start; }
+.faq-list { border-top: 1px solid var(--color-border); }
+.faq-item { background: var(--color-white); border: 1px solid var(--color-border); border-top: 0; }
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 24px;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color .2s ease;
 }
-.area-map__label--pref { top: 6%; left: 30%; font-size: 15px; color: var(--color-text); }
-.area-map__label--saitama { top: 22%; left: 22%; }
-.area-map__label--koshigaya { top: 34%; right: 8%; }
-.area-map__label--toda { bottom: 30%; left: 4%; }
-.area-map__label--soka { bottom: 30%; right: 12%; }
-.area-map__label--tokyo { bottom: 36%; right: 24%; }
-.area-map__label--kawaguchi { top: 46%; left: 34%; font-size: 17px; font-family: var(--font-serif); color: var(--color-charcoal); }
-.area-map__label--higashi { top: 40%; left: 58%; font-size: 12px; color: var(--color-charcoal); }
-.area-map__note { position: absolute; top: 0; left: 0; margin-top: 0; }
-.area-map__callout {
-  position: absolute;
-  bottom: 2%;
-  right: -10px;
-  width: 122px;
-  height: 122px;
-  border-radius: 50%;
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
+.faq-item__q::-webkit-details-marker { display: none; }
+.faq-item__q:hover { background: #fdfbf7; }
+.faq-item__q:focus-visible { outline: 2px solid var(--color-gold); outline-offset: -2px; }
+.faq-item__num {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  font-size: 12px;
-  padding: 8px;
-  line-height: 1.6;
-}
-
-/* =========================================================
-   08 FAQ
-   ========================================================= */
-.split--faq { align-items: start; }
-.faq-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px 24px;
-}
-.faq-card {
-  display: flex;
-  gap: 16px;
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  padding: 22px;
-}
-.faq-card__q {
-  flex-shrink: 0;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   background: var(--color-gold);
   color: var(--color-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: var(--font-en);
   font-size: 12.5px;
   font-weight: 500;
 }
-.faq-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 10px; line-height: 1.6; }
-.faq-card p { font-size: 13px; color: var(--color-text-soft); line-height: 1.85; display: flex; gap: 10px; }
-.faq-card__a {
+.faq-item__text { flex: 1 1 auto; min-width: 0; font-family: var(--font-serif); font-size: 16.5px; font-weight: 600; line-height: 1.7; letter-spacing: 0.02em; overflow-wrap: anywhere; }
+/* 開閉の目印（＋ / −）。細い線で控えめに */
+.faq-item__icon { position: relative; flex-shrink: 0; width: 16px; height: 16px; }
+.faq-item__icon::before,
+.faq-item__icon::after { content: ""; position: absolute; top: 50%; left: 0; width: 16px; height: 1px; background: var(--color-gold); transition: transform .25s ease; }
+.faq-item__icon::after { transform: rotate(90deg); }
+.faq-item[open] .faq-item__icon::after { transform: rotate(0deg); }
+.faq-item__a { display: flex; gap: 14px; padding: 0 24px 24px 86px; }
+.faq-item__a-mark {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-border);
-  color: var(--color-charcoal);
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-charcoal);
   font-family: var(--font-en);
-  font-size: 10.5px;
-  margin-top: 2px;
+  font-size: 11px;
+}
+.faq-item__a p { font-size: 14.5px; line-height: 2; color: var(--color-text-soft); overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__icon::before, .faq-item__icon::after { transition: none; }
+}
+/* 公開中の質問が無いとき（一覧の代わり） */
+.faq-empty {
+  align-self: start;
+  padding: 22px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--color-text-soft);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
 }
 
 /* =========================================================
-   09 CONTACT
+   08 CONTACT
    ========================================================= */
 .contact-cards {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 34px;
+  gap: 14px;
+  margin: 6px 0 40px;
 }
+/* 電話・メールの2つ。1枚ずつ少しゆとりを持たせ、2行目に電話番号・メールアドレスを出す（PCでは電話番号を見て電話できるように） */
 .contact-card {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
+  min-height: 84px;
   background: var(--color-white);
   border: 1px solid var(--color-border);
-  padding: 20px 22px;
-  cursor: default;
+  padding: 18px 24px;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: border-color .2s ease, background-color .2s ease;
 }
+.contact-card:hover { border-color: var(--color-gold); background: #fffdf9; }
+.contact-card:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 2px; }
 .contact-card svg { width: 26px; height: 26px; flex-shrink: 0; color: var(--color-charcoal); }
-.contact-card__jp { font-size: 14.5px; margin-right: auto; }
-.contact-card__en { font-family: var(--font-en); font-size: 11px; letter-spacing: 0.1em; color: var(--color-gold); }
+.contact-card__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; margin-right: auto; }
+.contact-card__jp { font-size: 15px; line-height: 1.6; }
+.contact-card__sub { font-family: var(--font-en); font-size: 13px; letter-spacing: 0.06em; line-height: 1.5; color: var(--color-text-soft); overflow-wrap: anywhere; }
+.contact-card__en { flex-shrink: 0; font-family: var(--font-en); font-size: 11px; letter-spacing: 0.1em; color: var(--color-gold); }
+.contact-card .arrow { flex-shrink: 0; transition: transform .2s ease; }
+.contact-card:hover .arrow { transform: translateX(3px); }
+@media (max-width: 640px) {
+  .contact-card { gap: 14px; min-height: 76px; padding: 16px 18px; }
+  .contact-card__en { display: none; }
+}
 
 /* =========================================================
    10 FOOTER
@@ -686,6 +681,8 @@ svg { width: 1em; height: 1em; }
   margin-bottom: 16px;
 }
 .footer-company__row svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; color: var(--color-gold); }
+.footer-company__row a { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
+.footer-company__row a:hover { text-decoration: underline; }
 .footer-company .btn { margin-top: 8px; }
 
 .footer-bottom { border-top: 1px solid rgba(243,237,227,0.14); }
@@ -723,10 +720,9 @@ svg { width: 1em; height: 1em; }
    レスポンシブ — タブレット
    ========================================================= */
 @media (max-width: 1100px) {
-  .triple, .triple.triple--area { grid-template-columns: 1fr 1fr; }
+  .triple { grid-template-columns: 1fr 1fr; }
   .triple__brand { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 30px; border-left: none; border-top: 1px solid var(--color-border); padding: 30px 0 0; margin-top: 10px; height: auto; }
   .triple__brand hr { display: none; }
-  .triple__brand--photo { grid-column: auto; }
   .service-body { grid-template-columns: 1fr; }
   .service-side { display: none; }
   .service-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 28px; }
@@ -753,7 +749,7 @@ svg { width: 1em; height: 1em; }
   .site-header.is-open .main-nav a { display: block; padding: 12px 0; }
   .site-header.is-open .header-cta { display: inline-flex; margin: 0 40px 26px; }
 
-  .split, .triple, .triple.triple--area, .service-layout { grid-template-columns: 1fr; }
+  .split, .triple, .service-layout { grid-template-columns: 1fr; }
   .split__text, .split__text--noshrink { max-width: none; }
   .split__visual--wide { order: -1; }
   .service-layout { gap: 40px; }
@@ -761,7 +757,6 @@ svg { width: 1em; height: 1em; }
   .works-compare__nav { position: static; transform: none; margin: -28px auto; }
   .works-compare__captions { grid-template-columns: 1fr; gap: 28px; margin-top: 28px; }
   .visual-script--corner { position: static; margin-top: 20px; text-align: left; }
-  .area-map { min-height: 340px; }
 }
 
 @media (max-width: 640px) {
@@ -775,12 +770,12 @@ svg { width: 1em; height: 1em; }
   .btn { width: 100%; justify-content: center; }
   .split__text .btn, .split__text--noshrink .btn { width: auto; }
   .service-grid { grid-template-columns: 1fr; }
-  .faq-grid { grid-template-columns: 1fr; }
+  .faq-item__q { gap: 14px; padding: 18px 16px; }
+  .faq-item__num { width: 38px; height: 38px; font-size: 11.5px; }
+  .faq-item__text { font-size: 15px; }
+  .faq-item__a { padding: 0 16px 22px 16px; }
   .footer-top { grid-template-columns: 1fr; padding: 70px 22px 50px; gap: 46px; }
   .footer-bottom__inner { padding: 22px; flex-direction: column; align-items: flex-start; }
   .triple__brand { flex-direction: column; align-items: flex-start; }
   .visual-caption--top, .visual-script--bottom, .visual-script--onphoto, .visual-caption--onphoto { position: static; text-align: left; background: none; padding: 0; margin-top: 16px; }
-  .area-map__label { display: none; }
-  .area-map__label--kawaguchi, .area-map__label--higashi { display: block; }
-  .area-map__callout { position: static; margin-top: 20px; width: auto; height: auto; border-radius: 4px; padding: 16px; }
 }
