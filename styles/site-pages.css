@@ -79,3 +79,13 @@
   .sp-br-pc { display: none; }
   .sp-cta__actions .btn { width: 100%; justify-content: center; }
 }
+
+/* 事業内容: 説明の「【見出し】本文」の行（不動産事業の 売買・賃貸・管理・仲介 など） */
+.sp-biz__subs { margin: 22px 0 0; padding: 0; border-top: 1px solid var(--color-border); }
+.sp-biz__sub { display: grid; grid-template-columns: 7.5em minmax(0, 1fr); gap: 4px 20px; padding: 16px 0; border-bottom: 1px solid var(--color-border); }
+.sp-biz__sub dt { font-family: var(--font-serif); font-size: 15.5px; font-weight: 600; line-height: 1.8; color: var(--color-charcoal); }
+.sp-biz__sub dd { margin: 0; font-size: 14.5px; line-height: 1.9; color: var(--color-text-soft); overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .sp-biz__sub { grid-template-columns: minmax(0, 1fr); padding: 14px 0; }
+}
+.sp-biz__paren { display: inline-block; } /* 事業名の末尾の（売買・賃貸管理・仲介）は途中で折り返さない */
