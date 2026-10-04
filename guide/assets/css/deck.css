@@ -1,0 +1,194 @@
+/* YUSHIN WEBSITE ホームページ更新・管理のご提案 — 1920×1080 のステージを画面に合わせて縮小・拡大する */
+:root {
+  --ivory: #faf7f2;
+  --ink: #2a2723;
+  --soft: #5f5a52;
+  --mute: #8a847a;
+  --gold: #ad8a50;
+  --gold-2: #c9a96a;
+  --line: #e3dacb;
+  --white: #fff;
+  --serif: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --sans: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --en: "Jost", "Noto Sans JP", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #1d1b18; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body { overflow: hidden; }
+img { display: block; max-width: 100%; }
+p, h1, h2, ol, ul, figure { margin: 0; padding: 0; }
+ol, ul { list-style: none; }
+
+/* ---------- ステージ ---------- */
+.viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+.deck { position: relative; width: 1920px; height: 1080px; flex: none; transform-origin: center center; }
+.slide { position: absolute; inset: 0; display: none; flex-direction: column; padding: 80px 120px 96px; background: var(--ivory); overflow: hidden; }
+.slide.is-active { display: flex; }
+
+/* ---------- 共通の文字 ---------- */
+.eyebrow { display: flex; align-items: center; gap: 18px; font-family: var(--en); font-size: 20px; font-weight: 500; letter-spacing: 0.2em; color: var(--gold); }
+.eyebrow__num { color: var(--ink); letter-spacing: 0.1em; }
+.eyebrow__line { width: 56px; height: 1px; background: var(--gold); }
+.eyebrow--center { justify-content: center; }
+.title { margin-top: 14px; font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: 1.35; letter-spacing: 0.04em; }
+.title--xl { font-size: 60px; line-height: 1.45; }
+.lead { margin-top: 22px; font-size: 25px; line-height: 1.8; color: var(--soft); }
+.message { margin-top: 16px; padding-left: 24px; border-left: 3px solid var(--gold); font-family: var(--serif); font-size: 32px; font-weight: 600; line-height: 1.5; letter-spacing: 0.03em; }
+.head--center { text-align: center; }
+.body { flex: 1 1 auto; min-height: 0; margin-top: 32px; }
+.note { margin-top: 20px; font-size: 26px; line-height: 1.6; }
+.note::before { content: ""; display: inline-block; width: 28px; height: 1px; margin-right: 16px; vertical-align: 9px; background: var(--gold); }
+.note--center { text-align: center; }
+.rule { display: block; width: 72px; height: 2px; background: var(--gold); }
+.foot { position: absolute; left: 120px; right: 120px; bottom: 38px; display: flex; justify-content: space-between; align-items: baseline; gap: 40px; font-size: 18px; color: var(--mute); }
+.foot__num { flex: none; font-family: var(--en); font-size: 20px; letter-spacing: 0.14em; color: var(--ink); }
+
+/* ---------- スクリーンショット・説明の枠 ---------- */
+.shot figcaption { margin-top: 12px; font-size: 21px; line-height: 1.5; color: var(--soft); }
+.shot__frame { position: relative; background: var(--white); border: 1px solid var(--line); box-shadow: 0 18px 40px -24px rgba(42, 39, 35, 0.35); }
+.shot__frame img { width: 100%; height: auto; }
+/* 実際の画面の上に、説明する場所の枠と番号を重ねる（画面そのものは変えない） */
+.mark { position: absolute; border: 3px solid var(--gold); border-radius: 6px; box-shadow: 0 0 0 4px rgba(173, 138, 80, 0.18); pointer-events: none; }
+.mark b, .points > li > b, .tx-num {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gold); color: var(--white);
+  font-family: var(--en); font-size: 22px; font-weight: 500;
+}
+.mark b { position: absolute; top: -22px; left: -22px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
+.tx-num { width: 30px; height: 30px; margin-right: 8px; font-size: 17px; vertical-align: 2px; }
+.points { display: flex; flex-direction: column; gap: 22px; }
+.points > li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 18px; align-items: start; }
+.points__h { font-size: 28px; font-weight: 700; line-height: 1.45; }
+.points p:not(.points__h) { margin-top: 4px; font-size: 22px; line-height: 1.65; color: var(--soft); }
+
+/* ---------- 01 表紙 ---------- */
+.s-cover { padding: 0; }
+.s-cover.is-active { display: grid; grid-template-columns: 1fr 820px; }
+.cover__text { padding: 120px 80px 120px 140px; display: flex; flex-direction: column; justify-content: center; }
+.cover__title { margin: 34px 0 44px; font-family: var(--serif); font-size: 84px; font-weight: 600; line-height: 1.38; letter-spacing: 0.05em; }
+.cover__sub { margin-top: 44px; font-family: var(--serif); font-size: 32px; font-weight: 500; line-height: 1.7; letter-spacing: 0.06em; }
+.cover__lead { margin-top: 30px; font-size: 25px; line-height: 1.9; color: var(--soft); }
+.cover__to { margin-top: 56px; font-size: 22px; letter-spacing: 0.1em; }
+.cover__photo { height: 100%; overflow: hidden; }
+.cover__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 40% center; }
+.s-cover .foot { left: 140px; right: 880px; }
+
+/* ---------- 02 考え方 ---------- */
+.why { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 56px; align-items: start; margin-top: 44px; }
+.why__menu img { width: 220px; border: 1px solid #111; box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.5); }
+.why__menu figcaption { margin-top: 12px; font-size: 19px; color: var(--soft); text-align: center; }
+.why__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.why__voice { position: relative; display: flex; align-items: center; justify-content: center; min-height: 104px; margin-bottom: 30px; padding: 14px 12px; font-size: 22px; line-height: 1.5; text-align: center; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.why__voice::after { content: ""; position: absolute; left: 50%; bottom: -12px; width: 22px; height: 22px; background: var(--white); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: translateX(-50%) rotate(45deg); }
+.why__card { position: relative; padding-bottom: 20px; background: var(--ink); box-shadow: 0 18px 40px -24px rgba(42, 39, 35, 0.5); }
+.why__card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: left top; border-bottom: 3px solid var(--gold); }
+.why__no { position: absolute; top: -18px; left: 18px; z-index: 1; padding: 4px 12px; font-family: var(--en); font-size: 20px; font-weight: 500; letter-spacing: 0.1em; color: var(--ink); background: var(--gold-2); }
+.why__name { margin-top: 18px; font-family: var(--serif); font-size: 34px; font-weight: 600; letter-spacing: 0.06em; text-align: center; color: var(--white); }
+
+/* ---------- 03 施工事例 ---------- */
+.split { display: grid; gap: 56px; align-items: start; }
+.split--works { grid-template-columns: 1000px minmax(0, 1fr); }
+.side { display: flex; flex-direction: column; gap: 30px; }
+.shot--sub { width: 520px; }
+.shot--sub figcaption { font-size: 20px; }
+
+/* ---------- 04 販売物件 ---------- */
+.prop-body { display: flex; flex-direction: column; gap: 28px; margin-top: 28px; }
+.flow { display: flex; align-items: center; gap: 22px; padding: 20px 36px; background: var(--white); border: 1px solid var(--line); }
+.flow__step { display: flex; align-items: center; gap: 20px; }
+.flow__step p { font-size: 23px; line-height: 1.5; color: var(--soft); }
+.flow__arrow { position: relative; flex: 1 1 40px; min-width: 40px; height: 2px; background: var(--gold-2); }
+.flow__arrow::after { content: ""; position: absolute; right: -2px; top: -7px; border: 8px solid transparent; border-left: 13px solid var(--gold-2); border-right: 0; }
+.badge { flex: none; display: inline-block; padding: 8px 22px; font-size: 26px; font-weight: 700; letter-spacing: 0.06em; color: #fff; border-radius: 4px; }
+.badge--selling { background: #1d6b45; }
+.badge--negotiating { background: #b26a00; }
+.badge--ended { background: #787c82; }
+.prop { display: grid; grid-template-columns: 600px minmax(0, 1fr); gap: 64px; align-items: start; }
+.prop__side { display: flex; flex-direction: column; gap: 26px; padding-top: 8px; }
+.prop__legend { display: flex; flex-direction: column; gap: 12px; font-size: 24px; line-height: 1.5; }
+.prop__legend li { display: flex; align-items: center; }
+.prop__side .shot { width: 960px; }
+.prop__text { font-size: 25px; line-height: 1.8; }
+
+/* ---------- 05 よくある質問 ---------- */
+.split--faq { grid-template-columns: 1120px minmax(0, 1fr); }
+
+/* ---------- 06 サイト内容 ---------- */
+.pages { display: grid; grid-template-columns: 960px 130px minmax(0, 1fr); gap: 24px; align-items: center; }
+.pages__admin { display: flex; flex-direction: column; gap: 24px; }
+.pages__arrow { position: relative; height: 2px; background: var(--gold); }
+.pages__arrow::after { content: ""; position: absolute; right: -2px; top: -9px; border: 10px solid transparent; border-left: 16px solid var(--gold); border-right: 0; }
+.pages__arrow span { position: absolute; left: -10px; right: 0; bottom: 14px; font-size: 20px; text-align: center; color: var(--gold); white-space: nowrap; }
+.pages__public { display: flex; flex-direction: column; gap: 18px; }
+.pages__public li { padding: 14px 18px 16px; background: var(--white); border: 1px solid var(--line); }
+.pages__where { margin-bottom: 10px; font-size: 21px; font-weight: 700; line-height: 1.4; }
+.pages__public img { width: 100%; height: auto; }
+.pages__public .pages__dark { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--ink); border-color: var(--ink); }
+.pages__dark .pages__where { margin: 0; color: #f3ede3; }
+.pages__dark img { width: 266px; }
+
+/* ---------- 07 管理画面 → ホームページ ---------- */
+.link { display: flex; align-items: center; justify-content: center; gap: 40px; }
+.link__col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.link__col img { height: 500px; width: auto; max-width: none; border: 1px solid var(--line); box-shadow: 0 18px 40px -24px rgba(42, 39, 35, 0.4); background: #fff; }
+.link__label { font-family: var(--serif); font-size: 26px; font-weight: 600; letter-spacing: 0.1em; color: var(--gold); }
+.link__arrow { position: relative; width: 200px; height: 4px; margin-top: 52px; background: var(--gold); }
+.link__arrow::after { content: ""; position: absolute; right: -4px; top: -14px; border: 16px solid transparent; border-left: 26px solid var(--gold); border-right: 0; }
+.link__arrow span { position: absolute; left: 0; right: 16px; bottom: 20px; font-size: 24px; font-weight: 700; line-height: 1.45; text-align: center; }
+
+/* ---------- 08 まとめ ---------- */
+.s-end { padding: 0; }
+.s-end.is-active { display: grid; grid-template-columns: 700px 1fr; }
+.end__photo { height: 100%; overflow: hidden; }
+.end__photo img { width: 100%; height: 100%; object-fit: cover; }
+.end__text { padding: 120px 140px 120px 120px; display: flex; flex-direction: column; justify-content: center; }
+.end__title { margin-top: 26px; font-family: var(--serif); font-size: 60px; font-weight: 600; line-height: 1.45; letter-spacing: 0.04em; }
+.end__lead { margin-top: 36px; font-size: 28px; line-height: 1.95; color: var(--soft); }
+.end__items { display: flex; flex-wrap: wrap; margin-top: 56px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.end__items li { padding: 22px 36px 22px 0; margin-right: 36px; font-size: 24px; font-weight: 500; border-right: 1px solid var(--line); }
+.end__items li:last-child { border-right: 0; margin-right: 0; }
+.end__items span { display: block; font-family: var(--en); font-size: 17px; letter-spacing: 0.14em; color: var(--gold); }
+.end__brand { margin-top: 64px; font-family: var(--en); font-size: 30px; letter-spacing: 0.32em; }
+.s-end .foot { left: 820px; }
+
+/* ---------- 操作（右上。マウスを動かしたときだけ表示） ---------- */
+.controls { position: fixed; top: 14px; right: 16px; z-index: 10; display: flex; align-items: center; gap: 4px; padding: 4px; background: rgba(29, 27, 24, 0.85); border-radius: 999px; color: #f3ede3; opacity: 0; transition: opacity .3s ease; }
+.controls.is-visible, .controls:hover, .controls:focus-within { opacity: 1; }
+.controls button { min-width: 84px; height: 36px; padding: 0 14px; font: inherit; font-size: 14px; color: inherit; background: transparent; border: 0; border-radius: 999px; cursor: pointer; }
+.controls button:hover, .controls button:focus-visible { background: rgba(255, 255, 255, 0.14); outline: none; }
+.controls button:disabled { opacity: 0.35; cursor: default; background: transparent; }
+.controls__num { min-width: 64px; font-family: var(--en); font-size: 14px; letter-spacing: 0.1em; text-align: center; }
+
+/* ---------- 印刷・PDF: 1ページ = 1スライド ---------- */
+@page { size: 1920px 1080px; margin: 0; }
+@media print {
+  html, body { height: auto; overflow: visible; background: var(--ivory); }
+  .viewport { position: static; display: block; }
+  .deck { width: 1920px; height: auto; transform: none !important; }
+  .slide { position: relative; display: flex; width: 1920px; height: 1080px; break-after: page; page-break-after: always; }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .s-cover { display: grid; grid-template-columns: 1fr 820px; }
+  .s-end { display: grid; grid-template-columns: 700px 1fr; }
+  .controls { display: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* 内容が少ないスライドは、見出しと注記のあいだで上下中央に置く */
+.s-faq .body, .s-why .body { align-content: center; }
+.s-why .body { margin-top: 32px; }
+
+/* ---------- 編集画面（施工事例・販売物件） ---------- */
+.edit { display: grid; grid-template-columns: 1090px minmax(0, 1fr); gap: 48px; align-items: start; margin-top: 28px; }
+.edit__side { display: flex; flex-direction: column; gap: 28px; }
+.points--edit { gap: 20px; }
+.points--edit .points__h { font-size: 26px; }
+.points--edit p:not(.points__h) { font-size: 21px; line-height: 1.6; }
+.zoom img { width: 100%; height: auto; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 12px 30px -20px rgba(42, 39, 35, 0.35); }
+.zoom figcaption { margin-top: 8px; font-size: 19px; color: var(--soft); }
+
+/* ---------- まとめ（4項目は2列） ---------- */
+.end__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 48px; border-bottom: 0; }
+.end__items li { margin: 0; padding: 18px 20px 18px 0; border-right: 0; border-bottom: 1px solid var(--line); font-size: 24px; }
+.end__back { margin-top: 44px; font-family: var(--serif); font-size: 30px; font-weight: 600; letter-spacing: 0.06em; }
+.end__back + .end__brand { margin-top: 28px; }
